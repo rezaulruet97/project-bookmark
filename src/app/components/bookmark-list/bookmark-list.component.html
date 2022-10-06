@@ -1,0 +1,41 @@
+<div class="main-content">
+  <div class="bookmark-title"><h1>Bookmark Manager</h1></div>
+  <div class="add-div">
+    <button type="button" mat-raised-button color="primary" (click)="handleDialog()">Add Bookmark</button>
+  </div>
+
+  <br>
+  <br>
+  <br>
+
+
+  <div class="bookmark-list" *ngIf="bookmarkGroups?.length">
+    <div class="individual-bookmark" *ngFor="let bookmark of bookmarkGroups; let rowIndex= index">
+
+      <div class="parent-bookmark" *ngIf="bookmarkGroups[rowIndex+1]">
+
+      <div class="bookmark-content" *ngFor="let bookDe of bookmarkGroups[rowIndex+1]; let colIndex= index">
+        <div class="div-title" *ngIf="!colIndex">
+          <h3>{{bookDe?.catActualName}}</h3>
+
+        </div>
+        <div class="border-div">
+          <div class="full-width">
+            <div class="left-span">
+              <span (click)="openLinkNewTab(bookDe?.url)">{{bookDe?.title}}</span>
+            </div>
+            <div class="right-span">
+              <button type="button" mat-raised-button color="accent" (click)="handleDetailsDialog(bookDe)">
+                Details
+              </button>
+            </div>
+            <br>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <br>
+    </div>
+  </div>
+</div>

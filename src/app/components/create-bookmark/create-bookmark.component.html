@@ -1,0 +1,50 @@
+<div class="main-content">
+  <h1>Add Bookmark</h1>
+  <div class="appointment-form">
+    <form [formGroup]="bookmarkForm">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Title</mat-label>
+        <input matInput placeholder="Write title within 30 characters" formControlName="title" required>
+      </mat-form-field>
+      <mat-error *ngIf="f.title?.invalid && f.title?.touched">
+          Title is required and can't be more than 30 characters.
+      </mat-error>
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Url</mat-label>
+        <input matInput placeholder="write valid url" formControlName="url" required>
+      </mat-form-field>
+      <mat-error *ngIf="f.url?.invalid && f.url?.touched">
+          Valid Url is required
+      </mat-error>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Category</mat-label>
+        <mat-select formControlName="categoryId" [disabled]="newCategoryOpened" required>
+          <mat-option *ngFor="let category of categoryList" [value]="category?.id">
+            {{category?.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button class="ml-3" type="button" mat-raised-button color="accent" (click)="openNewCategory()">+</button>
+      <mat-form-field class="example-full-width" appearance="fill" *ngIf="newCategoryOpened">
+        <mat-label>New Category Name</mat-label>
+        <input #newCategoryName matInput placeholder="New Category Name" formControlName="newCategoryName" required>
+      </mat-form-field>
+      <mat-error *ngIf="f.newCategoryName?.invalid && f.newCategoryName?.touched">
+          New Category Name is required
+      </mat-error>
+
+      <div class="buttons">
+        <button class="left-btn"
+          type="button" mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
+        <button class="right-btn" [disabled]="bookmarkForm.invalid"
+          type="button" mat-raised-button color="primary" (click)="saveBookmark()">Save</button>
+
+      </div>
+
+
+    </form>
+  </div>
+
+</div>
