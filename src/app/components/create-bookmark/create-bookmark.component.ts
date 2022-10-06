@@ -28,8 +28,8 @@ export class CreateBookmarkComponent implements OnInit{
     this.bookmarkForm = this.fb.group({
       title : ['', [Validators.required,Validators.maxLength(30), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
       url  : ['', [Validators.required, Validators.pattern(this.vaildUrlReg)]],
-      categoryId: ['', [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
-      newCategoryName : [''],
+      categoryId: ['', [Validators.required]],
+      newCategoryName : ['', Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)],
     });
   }
 
@@ -40,11 +40,6 @@ export class CreateBookmarkComponent implements OnInit{
   onClose(){
     this.dialogRef.close();
   }
-
-  saveAppointment(){
-    this.dialogRef.close(this.bookmarkForm.value);
-  }
-
 
   openNewCategory(){
     this.newCategoryOpened = true;
